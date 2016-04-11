@@ -1,0 +1,8 @@
+#game canvas{
+    cursor: crosshair;
+    margin: 0 auto;
+}
+iframe {
+    width: auto;
+    margin-left: 120px;
+}
