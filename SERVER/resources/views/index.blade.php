@@ -35,7 +35,6 @@
 					<li class= "float-left" ><a ><img src = "{{$gun->image}}"  id = "{{$gun->id}}"  ></a></li>
 					@endforeach
 					@endif
-					
 				</ul>
 				<!-- <div>My Items</div> -->
 		</div>

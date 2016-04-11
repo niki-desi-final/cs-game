@@ -6,6 +6,7 @@ var EventedLoop = require('eventedloop');
 var Game = require('./Game');
 var Player = require('./Player');
 var Weapon = require('./Weapon');
+var WeaponDatabase = require('./WeaponDatabase');
 var Armor = require('./Armor');
 
 
@@ -55,8 +56,10 @@ var ServerManager = function(serverInstance){
             /**
              * Save user name
              */
-            socket.on('MY-NAME-IS',function(name){
-                user.name = name;
+            socket.on('MY-NAME-IS',function(data){
+                user.name = data.name;
+                user.weapons = data.weapons;
+
             });
 
             /**
@@ -88,7 +91,7 @@ var ServerManager = function(serverInstance){
             socket.on('PLAY-SELECTED-TEAM',function(team){
 
                 player = new Player(user.name,team);
-                player.armWeapon(WeaponArsenal[WeaponData.id]);
+                player.armWeapons(user.weapons);
                 player.armArmor(ArmorArsenal[ArmorData.id]);
                 var roomSnapShot = game.rooms[user.room];
 
@@ -101,14 +104,7 @@ var ServerManager = function(serverInstance){
 
             });
 
-            /*socket.on('RESPAWN-PLAYER',function(){
-                player.respawn();
-                player.armWeapon(new Weapon(WeaponData.weaponName,WeaponData.weaponDMG,WeaponData.weaponFireRate,
-                    WeaponData.weaponRange,WeaponData.weaponIndex,WeaponData.weaponMagazineSize,WeaponData.bulletDMG,WeaponData.bulletSpeed,WeaponData.reloadSpeed));
-                player.armArmor(new Armor(ArmorData.armorID,ArmorData.armorName,ArmorData.durability,ArmorData.damageReduction));
-                socket.emit('PLAYER-SPAWNED',player);
-                socket.broadcast.to(user.room).emit('OTHER-SPAWNED', player.id);
-            });*/
+
 
             socket.on('CLIENT IS READY',function () {
                 socket.emit('GAME CAN BEGIN')
@@ -135,7 +131,7 @@ var ServerManager = function(serverInstance){
             socket.on('PLAYER-HIT-TARGET',function(battleLog){
                 var targetPlayer  = game.rooms[user.room].players[battleLog.targetID];
                 if(targetPlayer.h > 0){
-                    var damageFromWeapon = WeaponArsenal[battleLog.weaponID].getDamageDone(battleLog.distance);
+                    var damageFromWeapon = player.weapons[battleLog.weaponID].getDamageDone(battleLog.distance);
                     var resultedDMG = targetPlayer.armor.dmgReduce(damageFromWeapon);
                     targetPlayer.h -= resultedDMG;
                     player.s += resultedDMG;
@@ -171,9 +167,17 @@ var ServerManager = function(serverInstance){
             });
             socket.on('RELOAD-WEAPON',function(){
                setTimeout(function(){
-                   socket.emit('RELOADED-WEAPON',player.weapon.wAmmoCap);
-                   player.weapon.wAmmo = player.weapon.wAmmoCap;
-               },player.weapon.rSpeed)
+                   socket.emit('RELOADED-WEAPON',player.weapons[player.weapons.selectedWeapon].wAmmoCap);
+                   player.weapons[player.weapons.selectedWeapon].wAmmo = player.weapons[player.weapons.selectedWeapon].wAmmoCap;
+               },player.weapons[player.weapons.selectedWeapon].rSpeed)
+            });
+            socket.on('WEAPON CHANGED',function(windex){
+                player.weapons.selectedWeapon = windex;
+                socket.emit('SERVER-CHANGED-WEAPON',windex);
+                socket.broadcast.to(user.room).emit('SOMEONE-CHANGED-WEAPON', {
+                    playerId:player.id,
+                    newWeapon:windex
+                });
             });
 
             socket.on('GET-MY-XY',function(){
@@ -212,7 +216,7 @@ var ServerManager = function(serverInstance){
             });
         });
 
-        loop.every('40ms',function(){
+        loop.every('50ms',function(){
 
             for(var i= 0;i <= 9;i++ ){
                 payload = {};

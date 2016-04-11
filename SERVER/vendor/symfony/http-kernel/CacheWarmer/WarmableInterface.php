@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\HttpKernel\CacheWarmer;
 
 /**
@@ -15,12 +16,12 @@ namespace Symfony\Component\HttpKernel\CacheWarmer;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-interface WarmableInterface {
-	/**
-	 * Warms up the cache.
-	 *
-	 * @param string $cacheDir
-	 *        	The cache directory
-	 */
-	public function warmUp($cacheDir);
+interface WarmableInterface
+{
+    /**
+     * Warms up the cache.
+     *
+     * @param string $cacheDir The cache directory
+     */
+    public function warmUp($cacheDir);
 }

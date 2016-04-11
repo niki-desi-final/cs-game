@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\HttpFoundation\File\Exception;
 
 /**
@@ -15,5 +16,6 @@ namespace Symfony\Component\HttpFoundation\File\Exception;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-class UploadException extends FileException {
+class UploadException extends FileException
+{
 }

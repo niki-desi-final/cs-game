@@ -4,6 +4,7 @@ namespace Illuminate\Auth\Access;
 
 use Exception;
 
-class AuthorizationException extends Exception {
-	//
+class AuthorizationException extends Exception
+{
+    //
 }

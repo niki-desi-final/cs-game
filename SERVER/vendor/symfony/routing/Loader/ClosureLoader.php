@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\Routing\Loader;
 
 use Symfony\Component\Config\Loader\Loader;
@@ -20,27 +21,26 @@ use Symfony\Component\Routing\RouteCollection;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class ClosureLoader extends Loader {
-	/**
-	 * Loads a Closure.
-	 *
-	 * @param \Closure $closure
-	 *        	A Closure
-	 * @param string|null $type
-	 *        	The resource type
-	 *        	
-	 * @return RouteCollection A RouteCollection instance
-	 */
-	public function load($closure, $type = null) {
-		return $closure ();
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function supports($resource, $type = null) {
-		return $resource instanceof \Closure && (! $type || 'closure' === $type);
-	}
+class ClosureLoader extends Loader
+{
+    /**
+     * Loads a Closure.
+     *
+     * @param \Closure    $closure A Closure
+     * @param string|null $type    The resource type
+     *
+     * @return RouteCollection A RouteCollection instance
+     */
+    public function load($closure, $type = null)
+    {
+        return $closure();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function supports($resource, $type = null)
+    {
+        return $resource instanceof \Closure && (!$type || 'closure' === $type);
+    }
 }

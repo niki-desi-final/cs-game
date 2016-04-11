@@ -1,8 +1,16 @@
 #game canvas{
     cursor: crosshair;
     margin: 0 auto;
+    border: 10px solid #2b2e32;
+    padding: 30px;
+    border-radius: 30px;
+    background: black;
 }
 iframe {
     width: auto;
     margin-left: 120px;
+}
+body{
+    background: black;
+    background-image: url("img/ct_t_background.png");
 }

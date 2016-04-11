@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\HttpKernel\Controller;
 
 use Symfony\Component\HttpKernel\Fragment\FragmentRendererInterface;
@@ -20,27 +21,26 @@ use Symfony\Component\HttpKernel\Fragment\FragmentRendererInterface;
  * the controller, you can use an instance of this class.
  *
  * @author Fabien Potencier <fabien@symfony.com>
- *        
+ *
  * @see FragmentRendererInterface
  */
-class ControllerReference {
-	public $controller;
-	public $attributes = array ();
-	public $query = array ();
-	
-	/**
-	 * Constructor.
-	 *
-	 * @param string $controller
-	 *        	The controller name
-	 * @param array $attributes
-	 *        	An array of parameters to add to the Request attributes
-	 * @param array $query
-	 *        	An array of parameters to add to the Request query string
-	 */
-	public function __construct($controller, array $attributes = array(), array $query = array()) {
-		$this->controller = $controller;
-		$this->attributes = $attributes;
-		$this->query = $query;
-	}
+class ControllerReference
+{
+    public $controller;
+    public $attributes = array();
+    public $query = array();
+
+    /**
+     * Constructor.
+     *
+     * @param string $controller The controller name
+     * @param array  $attributes An array of parameters to add to the Request attributes
+     * @param array  $query      An array of parameters to add to the Request query string
+     */
+    public function __construct($controller, array $attributes = array(), array $query = array())
+    {
+        $this->controller = $controller;
+        $this->attributes = $attributes;
+        $this->query = $query;
+    }
 }

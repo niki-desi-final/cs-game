@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Monolog\Handler;
 
 /**
@@ -16,42 +17,41 @@ namespace Monolog\Handler;
  *
  * @author Craig D'Amelio <craig@damelio.ca>
  */
-class WhatFailureGroupHandler extends GroupHandler {
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function handle(array $record) {
-		if ($this->processors) {
-			foreach ( $this->processors as $processor ) {
-				$record = call_user_func ( $processor, $record );
-			}
-		}
-		
-		foreach ( $this->handlers as $handler ) {
-			try {
-				$handler->handle ( $record );
-			} catch ( \Exception $e ) {
-				// What failure?
-			}
-		}
-		
-		return false === $this->bubble;
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function handleBatch(array $records) {
-		foreach ( $this->handlers as $handler ) {
-			try {
-				$handler->handleBatch ( $records );
-			} catch ( \Exception $e ) {
-				// What failure?
-			}
-		}
-	}
+class WhatFailureGroupHandler extends GroupHandler
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function handle(array $record)
+    {
+        if ($this->processors) {
+            foreach ($this->processors as $processor) {
+                $record = call_user_func($processor, $record);
+            }
+        }
+
+        foreach ($this->handlers as $handler) {
+            try {
+                $handler->handle($record);
+            } catch (\Exception $e) {
+                // What failure?
+            }
+        }
+
+        return false === $this->bubble;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function handleBatch(array $records)
+    {
+        foreach ($this->handlers as $handler) {
+            try {
+                $handler->handleBatch($records);
+            } catch (\Exception $e) {
+                // What failure?
+            }
+        }
+    }
 }

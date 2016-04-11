@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\Translation\Catalogue;
 
 use Symfony\Component\Translation\MessageCatalogueInterface;
@@ -31,45 +32,46 @@ use Symfony\Component\Translation\MessageCatalogueInterface;
  *
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>
  */
-interface OperationInterface {
-	/**
-	 * Returns domains affected by operation.
-	 *
-	 * @return array
-	 */
-	public function getDomains();
-	
-	/**
-	 * Returns all valid messages ('all') after operation.
-	 *
-	 * @param string $domain        	
-	 *
-	 * @return array
-	 */
-	public function getMessages($domain);
-	
-	/**
-	 * Returns new messages ('new') after operation.
-	 *
-	 * @param string $domain        	
-	 *
-	 * @return array
-	 */
-	public function getNewMessages($domain);
-	
-	/**
-	 * Returns obsolete messages ('obsolete') after operation.
-	 *
-	 * @param string $domain        	
-	 *
-	 * @return array
-	 */
-	public function getObsoleteMessages($domain);
-	
-	/**
-	 * Returns resulting catalogue ('result').
-	 *
-	 * @return MessageCatalogueInterface
-	 */
-	public function getResult();
+interface OperationInterface
+{
+    /**
+     * Returns domains affected by operation.
+     *
+     * @return array
+     */
+    public function getDomains();
+
+    /**
+     * Returns all valid messages ('all') after operation.
+     *
+     * @param string $domain
+     *
+     * @return array
+     */
+    public function getMessages($domain);
+
+    /**
+     * Returns new messages ('new') after operation.
+     *
+     * @param string $domain
+     *
+     * @return array
+     */
+    public function getNewMessages($domain);
+
+    /**
+     * Returns obsolete messages ('obsolete') after operation.
+     *
+     * @param string $domain
+     *
+     * @return array
+     */
+    public function getObsoleteMessages($domain);
+
+    /**
+     * Returns resulting catalogue ('result').
+     *
+     * @return MessageCatalogueInterface
+     */
+    public function getResult();
 }

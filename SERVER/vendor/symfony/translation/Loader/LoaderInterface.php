@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\Translation\Loader;
 
 use Symfony\Component\Translation\MessageCatalogue;
@@ -19,21 +20,19 @@ use Symfony\Component\Translation\Exception\NotFoundResourceException;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-interface LoaderInterface {
-	/**
-	 * Loads a locale.
-	 *
-	 * @param mixed $resource
-	 *        	A resource
-	 * @param string $locale
-	 *        	A locale
-	 * @param string $domain
-	 *        	The domain
-	 *        	
-	 * @return MessageCatalogue A MessageCatalogue instance
-	 *        
-	 * @throws NotFoundResourceException when the resource cannot be found
-	 * @throws InvalidResourceException when the resource cannot be loaded
-	 */
-	public function load($resource, $locale, $domain = 'messages');
+interface LoaderInterface
+{
+    /**
+     * Loads a locale.
+     *
+     * @param mixed  $resource A resource
+     * @param string $locale   A locale
+     * @param string $domain   The domain
+     *
+     * @return MessageCatalogue A MessageCatalogue instance
+     *
+     * @throws NotFoundResourceException when the resource cannot be found
+     * @throws InvalidResourceException  when the resource cannot be loaded
+     */
+    public function load($resource, $locale, $domain = 'messages');
 }

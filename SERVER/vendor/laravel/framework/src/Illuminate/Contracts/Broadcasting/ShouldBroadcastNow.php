@@ -2,6 +2,7 @@
 
 namespace Illuminate\Contracts\Broadcasting;
 
-interface ShouldBroadcastNow extends ShouldBroadcast {
-	//
+interface ShouldBroadcastNow extends ShouldBroadcast
+{
+    //
 }

@@ -2,6 +2,7 @@
 
 namespace Illuminate\Contracts\Queue;
 
-interface ShouldQueue {
-	//
+interface ShouldQueue
+{
+    //
 }

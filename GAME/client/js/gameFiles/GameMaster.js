@@ -28,7 +28,7 @@ var GameMaster = function (dom_edtr) {
         /**
          * Need user name for results persist;
          */
-        socket.emit('MY-NAME-IS',dom_edtr.getUserData().name);
+        socket.emit('MY-NAME-IS',dom_edtr.getUserData());
 
 
     });
@@ -38,6 +38,12 @@ var GameMaster = function (dom_edtr) {
         console.log(serverResponse);
         GameSettings.currentJoinedRoom = serverResponse.roomSituation;
     });
+    socket.on('SERVER-CHANGED-WEAPON',function (serverResponse) {
+        console.log(serverResponse);
+    });
+
+
+
 
 
 
@@ -98,7 +104,7 @@ var GameMaster = function (dom_edtr) {
                 gameThis.gameObjects.player.x = data.x;
                 gameThis.gameObjects.player.y = data.y;
                 gameThis.GameUi.healthText.setText('HEALT : '+ data.h);
-                gameThis.GameUi.ammoText.setText('AMMO : '+ data.weapon.wAmmo);
+                gameThis.GameUi.ammoText.setText('AMMO : '+ data.weapons[data.weapons.selectedWeapon].wAmmo);
             });
         },
         watchIfSomeOneFire:function () {
@@ -117,7 +123,7 @@ var GameMaster = function (dom_edtr) {
             socket.on('SOMEONE-DIED',function(data){
                 if(data.tango == stage.GM.player.id){
                     stage.gameObjects.player.visible = false;
-                    stage.gameObjects.player.weapon.wAmmo = 0;
+                    stage.gameObjects.player.weapons[stage.gameObjects.player.weapons.selectedWeapon].wAmmo = 0;
                     stage.GameUi.healthText.setText('HEALT :'+ 0);
                     stage.respawnUi.respawnImage.visible = true;
                     stage.sound.die.play();
@@ -128,7 +134,7 @@ var GameMaster = function (dom_edtr) {
                 stage.gameObjects.player.respawn(serverResponse);
                 stage.gameObjects.player.visible = true;
                 stage.GameUi.healthText.setText('HEALTH :'+ 100);
-                stage.GameUi.ammoText.setText('Ammo :'+ stage.gameObjects.player.weapon.wAmmo)
+                stage.GameUi.ammoText.setText('AMMO :'+ stage.gameObjects.player.weapons[stage.gameObjects.player.weapons.selectedWeapon].wAmmo);
                 stage.respawnUi.on = false;
                 stage.respawnUi.visible = false;
 
@@ -149,11 +155,20 @@ var GameMaster = function (dom_edtr) {
                 }
             });
             socket.on('RELOADED-WEAPON',function(ammo){
-                stage.gameObjects.player.weapon.wAmmo = ammo;
-                stage.gameObjects.player.weapon.isReloading = false;
+                stage.gameObjects.player.weapons[stage.gameObjects.player.weapons.selectedWeapon].wAmmo = ammo;
+                stage.gameObjects.player.weapons[stage.gameObjects.player.weapons.selectedWeapon].isReloading = false;
                 stage.sound.w_clipin.play();
-                stage.GameUi.ammoText.setText('AMMO :'+ stage.gameObjects.player.weapon.wAmmo)
+                stage.GameUi.ammoText.setText('AMMO :'+ stage.gameObjects.player.weapons[stage.gameObjects.player.weapons.selectedWeapon].wAmmo)
 
+            });
+
+            socket.on('SOMEONE-CHANGED-WEAPON',function (who) {
+                stage.gameObjects.others[who.playerId].switchWeapon(who.newWeapon);
+                console.log(who);
+            });
+            socket.on('SERVER-CHANGED-WEAPON',function () {
+                stage.sound.wpn_hudon.play();
+                stage.GameUi.ammoText.setText('AMMO :'+ stage.gameObjects.player.weapons[stage.gameObjects.player.weapons.selectedWeapon].wAmmo);
             });
 
             

@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\HttpFoundation\Session\Storage\Handler;
 
 /**
@@ -17,58 +18,53 @@ namespace Symfony\Component\HttpFoundation\Session\Storage\Handler;
  *
  * @author Drak <drak@zikula.org>
  */
-class NullSessionHandler implements \SessionHandlerInterface {
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function open($savePath, $sessionName) {
-		return true;
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function close() {
-		return true;
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function read($sessionId) {
-		return '';
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function write($sessionId, $data) {
-		return true;
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function destroy($sessionId) {
-		return true;
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function gc($maxlifetime) {
-		return true;
-	}
+class NullSessionHandler implements \SessionHandlerInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function open($savePath, $sessionName)
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function close()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function read($sessionId)
+    {
+        return '';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function write($sessionId, $data)
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function destroy($sessionId)
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function gc($maxlifetime)
+    {
+        return true;
+    }
 }

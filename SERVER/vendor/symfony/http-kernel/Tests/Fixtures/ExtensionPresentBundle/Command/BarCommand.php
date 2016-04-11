@@ -10,7 +10,9 @@ use Symfony\Component\HttpKernel\Bundle;
  *
  * @see Bundle::registerCommands()
  */
-class BarCommand extends Command {
-	public function __construct($example, $name = 'bar') {
-	}
+class BarCommand extends Command
+{
+    public function __construct($example, $name = 'bar')
+    {
+    }
 }
