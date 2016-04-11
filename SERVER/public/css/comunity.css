@@ -1,0 +1,18 @@
+.pf{
+	display:inline-block;
+	width:60%;
+	margin:auto;
+	margin-top:100px;
+	margin-left:6%;
+	background-color:rgba(40, 40, 40, 0.7);
+	padding:10px;
+	text-align:center;
+}
+
+.box{
+	display:inline-block;
+	width:30%;
+	margin:10px;
+	padding:10px;
+
+}

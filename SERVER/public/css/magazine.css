@@ -1,0 +1,60 @@
+
+.mag{
+	width:68%;
+	margin-left:8%;
+	margin-top:50px;
+	padding:30px;
+}
+
+#double{
+  	columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+	padding:30px; 
+
+} 
+
+.pff{
+	background-color:rgba(50, 50, 50, 0.7);
+	padding:10px;
+}
+.double{
+	display:inline-block;
+	margin-bottom:30px;
+	padding-left:3px;
+	padding-right:3px;
+	width:90%;
+	height:280px;
+
+}
+	 
+ .text{ 
+ padding:10px;
+ width:280px;
+	 height:240px; 
+   background:#000000; 
+   opacity:0;
+   position:absolute;
+    } 
+    
+   .pic:hover .text {
+    opacity:0.6;
+    text-align:justify;
+    color:#ffffff;
+ } 
+ 
+ .title{
+	margin-bottom: 10px;
+}
+ .pic>img{ 
+	width:280px;
+	 height:240px; 
+	 position:absolute;
+	 border-radius:5px;
+} 
+#msg{
+	display:none;
+
+
+}	 
+	 

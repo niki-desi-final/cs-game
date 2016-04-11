@@ -1,0 +1,43 @@
+body, html{
+height:100%;
+margin:0px;
+padding:0px;	
+font-size:16px;
+background: url("/images/fon.png") no-repeat  center center fixed;
+ background-size: auto 100%;
+ background-color:black;
+ background-position: right;
+
+}
+html{
+ overflow-y:scroll;	
+}
+
+#container{
+
+ margin:0px;
+ padding:0px;
+ min-height:100%;
+}
+
+img {
+	width: 120px;
+	height: 120px;
+	border-radius:3px;
+}
+
+.navbar{
+	margin-bottom:0px;
+	
+}
+.sp{
+	padding:15px;
+}
+.row{
+ margin-top: 10%;
+}
+
+.play{
+	font-size:22px;
+	font-wight:bold;
+}

@@ -1,0 +1,45 @@
+.pff{
+	background-color:rgba(50, 50, 50, 0.7);
+	padding:10px;
+}
+
+.left{
+vertical-align: top;
+display:inline-block;
+ width:18%;
+ margin-left:10px;
+ margin-right:20px;
+ margin-top:140px;
+}
+
+.time{
+	font-size:10px;
+	font-style:italic;
+}
+.article{
+	margin-bottom:20px;
+	font-size:15px;
+} 
+
+.pf{
+	display:inline-block;
+	width:65%;
+	margin:auto;
+	margin-top:100px;
+	background-color:rgba(40, 40, 40, 0.7);
+	padding:10px;
+}
+
+.putsar-logo{
+ text-align:center;
+ }
+ .putsar-logo>img{
+ width:460px;
+ height:auto;
+ margin:60px;
+ }
+ 
+ .float-left{
+	display: inline-block;
+ 	 margin: 10px;
+}
