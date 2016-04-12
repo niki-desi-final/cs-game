@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\HttpKernel\EventListener;
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -21,30 +22,30 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class StreamedResponseListener implements EventSubscriberInterface {
-	/**
-	 * Filters the Response.
-	 *
-	 * @param FilterResponseEvent $event
-	 *        	A FilterResponseEvent instance
-	 */
-	public function onKernelResponse(FilterResponseEvent $event) {
-		if (! $event->isMasterRequest ()) {
-			return;
-		}
-		
-		$response = $event->getResponse ();
-		
-		if ($response instanceof StreamedResponse) {
-			$response->send ();
-		}
-	}
-	public static function getSubscribedEvents() {
-		return array (
-				KernelEvents::RESPONSE => array (
-						'onKernelResponse',
-						- 1024 
-				) 
-		);
-	}
+class StreamedResponseListener implements EventSubscriberInterface
+{
+    /**
+     * Filters the Response.
+     *
+     * @param FilterResponseEvent $event A FilterResponseEvent instance
+     */
+    public function onKernelResponse(FilterResponseEvent $event)
+    {
+        if (!$event->isMasterRequest()) {
+            return;
+        }
+
+        $response = $event->getResponse();
+
+        if ($response instanceof StreamedResponse) {
+            $response->send();
+        }
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return array(
+            KernelEvents::RESPONSE => array('onKernelResponse', -1024),
+        );
+    }
 }

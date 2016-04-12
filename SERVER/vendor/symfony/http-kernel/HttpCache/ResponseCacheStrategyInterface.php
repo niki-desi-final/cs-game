@@ -12,6 +12,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\HttpKernel\HttpCache;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -22,18 +23,19 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-interface ResponseCacheStrategyInterface {
-	/**
-	 * Adds a Response.
-	 *
-	 * @param Response $response        	
-	 */
-	public function add(Response $response);
-	
-	/**
-	 * Updates the Response HTTP headers based on the embedded Responses.
-	 *
-	 * @param Response $response        	
-	 */
-	public function update(Response $response);
+interface ResponseCacheStrategyInterface
+{
+    /**
+     * Adds a Response.
+     *
+     * @param Response $response
+     */
+    public function add(Response $response);
+
+    /**
+     * Updates the Response HTTP headers based on the embedded Responses.
+     *
+     * @param Response $response
+     */
+    public function update(Response $response);
 }

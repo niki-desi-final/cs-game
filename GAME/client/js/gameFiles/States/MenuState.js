@@ -16,6 +16,7 @@ MenuState.prototype.preload = function () {
     /*player*/
     this.game.load.spritesheet('terroristSprite','assets/GameState/25x25terrorist3.png',27,27,5);
     this.game.load.spritesheet('counterTerroristSprite','assets/GameState/25x25contra_terrorist3.png',27,27,5);
+    this.game.load.spritesheet('weaponsSprite','assets/GameState/weaponssprite.png',30,6,10);
     /*Map*/
     this.game.load.tilemap('jsData','assets/GameState/map.json',null,Phaser.Tilemap.TILED_JSON);
     this.game.load.image('mapBlocks','assets/GameState/aztec.bmp');
@@ -32,7 +33,14 @@ MenuState.prototype.preload = function () {
 /*LOAD AUDIO*/
     this.game.load.audio('dieSound', 'assets/GameState/sound/die1.wav');
     this.game.load.audio('hitSound', 'assets/GameState/sound/hit2.wav');
-    this.game.load.audio('fireSound', 'assets/GameState/sound/ak47.wav');
+    this.game.load.audio('fireAk47', 'assets/GameState/sound/ak47.wav');
+    this.game.load.audio('fireAWP', 'assets/GameState/sound/awp.wav');
+    this.game.load.audio('fireFnf2000', 'assets/GameState/sound/fnf2000.wav');
+    this.game.load.audio('fireM4a1', 'assets/GameState/sound/m4a1.wav');
+    this.game.load.audio('fireP90', 'assets/GameState/sound/p90.wav');
+    this.game.load.audio('fireUSP', 'assets/GameState/sound/usp.wav');
+
+
     this.game.load.audio('w_empty', 'assets/GameState/sound/w_empty.wav');
     this.game.load.audio('w_clipout', 'assets/GameState/sound/w_clipout.wav');
     this.game.load.audio('w_clipin', 'assets/GameState/sound/w_clipin.wav');
@@ -47,6 +55,7 @@ MenuState.prototype.preload = function () {
     this.game.load.audio('ric3', 'assets/GameState/sound/ric3.ogg');
     this.game.load.audio('ric4', 'assets/GameState/sound/ric4.ogg');
     this.game.load.audio('ric5', 'assets/GameState/sound/ric5.ogg');
+    this.game.load.audio('wpn_hudon', 'assets/GameState/sound/wpn_hudon.wav');
 
 
 

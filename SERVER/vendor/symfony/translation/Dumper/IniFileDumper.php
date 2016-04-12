@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\Translation\Dumper;
 
 use Symfony\Component\Translation\MessageCatalogue;
@@ -17,29 +18,28 @@ use Symfony\Component\Translation\MessageCatalogue;
  *
  * @author Stealth35
  */
-class IniFileDumper extends FileDumper {
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = array()) {
-		$output = '';
-		
-		foreach ( $messages->all ( $domain ) as $source => $target ) {
-			$escapeTarget = str_replace ( '"', '\"', $target );
-			$output .= $source . '="' . $escapeTarget . "\"\n";
-		}
-		
-		return $output;
-	}
-	
-	/**
-	 *
-	 * {@inheritdoc}
-	 *
-	 */
-	protected function getExtension() {
-		return 'ini';
-	}
+class IniFileDumper extends FileDumper
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = array())
+    {
+        $output = '';
+
+        foreach ($messages->all($domain) as $source => $target) {
+            $escapeTarget = str_replace('"', '\"', $target);
+            $output .= $source.'="'.$escapeTarget."\"\n";
+        }
+
+        return $output;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getExtension()
+    {
+        return 'ini';
+    }
 }

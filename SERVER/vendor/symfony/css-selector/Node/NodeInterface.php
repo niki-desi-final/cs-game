@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Symfony\Component\CssSelector\Node;
 
 /**
@@ -17,29 +18,29 @@ namespace Symfony\Component\CssSelector\Node;
  * which is copyright Ian Bicking, @see https://github.com/SimonSapin/cssselect.
  *
  * @author Jean-François Simon <jeanfrancois.simon@sensiolabs.com>
- *        
- * @internal
  *
+ * @internal
  */
-interface NodeInterface {
-	/**
-	 * Returns node's name.
-	 *
-	 * @return string
-	 */
-	public function getNodeName();
-	
-	/**
-	 * Returns node's specificity.
-	 *
-	 * @return Specificity
-	 */
-	public function getSpecificity();
-	
-	/**
-	 * Returns node's string representation.
-	 *
-	 * @return string
-	 */
-	public function __toString();
+interface NodeInterface
+{
+    /**
+     * Returns node's name.
+     *
+     * @return string
+     */
+    public function getNodeName();
+
+    /**
+     * Returns node's specificity.
+     *
+     * @return Specificity
+     */
+    public function getSpecificity();
+
+    /**
+     * Returns node's string representation.
+     *
+     * @return string
+     */
+    public function __toString();
 }

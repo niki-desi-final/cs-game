@@ -25,6 +25,7 @@ var DomEditor = function () {
 
     if (userData.name == undefined){
         userData.name = 'Guest';
+        userData.weapons = [0,1,2,3,4,5];
     }
     /*Greet user*/
     $('#name-span').text(userData.name);
@@ -33,7 +34,7 @@ var DomEditor = function () {
 
 
     return{
-
+        /*Weapons must be array*/
         getUserData : function () {
             return userData;
         }

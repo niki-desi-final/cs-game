@@ -2,6 +2,7 @@
 
 namespace Illuminate\Database\Events;
 
-class TransactionRolledBack extends ConnectionEvent {
-	//
+class TransactionRolledBack extends ConnectionEvent
+{
+    //
 }

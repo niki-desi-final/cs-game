@@ -2,7 +2,7 @@
  * Created by niki on 24.03.16.
  */
 var Weapon = require('./Weapon');
-
+var WeaponDatabase = require('./WeaponDatabase');
 
 Player.Util = {
   id:0,
@@ -25,7 +25,6 @@ function Player(playerName,team){
         this.isAlive = true;
         this.deads = 0;
         this.kills = 0;
-        this.weapon = null;
         this.isMoved = false;
         if (team == 't1'){
             this.x = 1494;
@@ -61,14 +60,23 @@ Player.prototype.respawn = function(){
     this.r =  0;
     this.h = 100;
     this.isMoved = true;
-    this.weapon.wAmmo = this.weapon.wAmmoCap;
+    this.weapons[this.weapons.selectedWeapon].wAmmo = this.weapons[this.weapons.selectedWeapon].wAmmoCap;
 };
-Player.prototype.armWeapon = function(_weapon){
-    this.weapon = _weapon;
+/**
+ *
+ * @param  {[]}_weapon
+ */
+Player.prototype.armWeapons = function(_weaponIndexArray){
+
+    this.weapons = {};
+    for(var i = 0;i < _weaponIndexArray.length; i++){
+        this.weapons[i] = WeaponDatabase[_weaponIndexArray[i]];
+    }
+    this.weapons.selectedWeapon = 0;
+
 };
 Player.prototype.armArmor = function(_armor){
     this.armor = _armor;
 };
-
 module.exports  = Player;
 

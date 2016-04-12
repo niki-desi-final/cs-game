@@ -3,11 +3,9 @@
  */
 var GameState = function(game,game_master,stateInitData) {
 
-
     this.game = game;
     this.soketEmiter = game_master;
-    this.destroyDeadMsG = new Phaser.Signal();
-    this.createDeadMsG = new Phaser.Signal();
+
 
     this.respawnUi = {
         respawnImage :null,
@@ -23,6 +21,7 @@ var GameState = function(game,game_master,stateInitData) {
         player : stateInitData.currentPlayer,
         roomSituation:stateInitData.roomSS
     };
+    console.log(this.GM);
     this.mapElements = {
         map:this.map,
         layer:{
@@ -120,10 +119,11 @@ GameState.prototype.Ui = {
         this.GameUi = {
             healthText:this.game.add.text(16,550,'HEALTH : '+ this.gameObjects.player.health,{ font: '20px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500' }),
             scoreText:this.game.add.text(550,550,'SCORE : '+ this.gameObjects.player.score,{ font: '20px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'}),
-            ammoText:this.game.add.text(180,550,'AMMO : '+ this.gameObjects.player.weapon.wAmmo,{ font: '20px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'}),
+            ammoText:this.game.add.text(180,550,'AMMO : '+ this.gameObjects.player.weapons[this.gameObjects.player.weapons.selectedWeapon].wAmmo,{ font: '20px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'}),
             timeText:this.game.add.text(300,30,'TIME : 0',{ font: '20px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'}),
             terroristGames:this.game.add.text(16,36,'Terrorist : 0',{ font: '14px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'}),
-            counter_terroristGames:this.game.add.text(16,56,'Counter-Terrorist : 0',{ font: '14px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'})
+            counter_terroristGames:this.game.add.text(16,56,'Counter-Terrorist : 0',{ font: '14px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'}),
+            weapon:this.game.add.text(330,550,'USP',{ font: '20px Arial', fill: '#0071b5  ',fontWeight:'bold',stroke:'#000000',strokeThickness:6,fill:'#FFA500'})
         };
         this.GameUi.healthText.fixedToCamera = true;
         this.GameUi.ammoText.fixedToCamera = true;
@@ -131,6 +131,7 @@ GameState.prototype.Ui = {
         this.GameUi.timeText.fixedToCamera = true;
         this.GameUi.terroristGames.fixedToCamera = true;
         this.GameUi.counter_terroristGames.fixedToCamera = true;
+        this.GameUi.weapon.fixedToCamera = true;
 
     },
     createMinimap:function () {
@@ -309,7 +310,7 @@ GameState.prototype.creators = {
     },
     createPlayer:function(){
         this.gameObjects.player = new Player(this.game,this,this.GM.player.x,this.GM.player.y,this.GM.player.t,
-            this.GM.player.r,this.GM.player.N,this.GM.player.id,this.GM.player.h,0,this.GM.player.weapon,this.GM.player.armor,this.soketEmiter);
+            this.GM.player.r,this.GM.player.N,this.GM.player.id,this.GM.player.h,0,this.GM.player.weapons,this.GM.player.armor,this.soketEmiter);
     },
     createMap:function(){
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -329,16 +330,15 @@ GameState.prototype.creators = {
     /*create sprites for all players in game*/
     createOthers:function(){
         var otherPlayerData = this.GM.roomSituation.players;
-
         for(var otherPlayer in otherPlayerData){
             var obj = otherPlayerData[otherPlayer];
             if(obj.t == 't1'){
-                this.gameObjects.others[obj.id] = new OhterPlayer(this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,obj.weapon,this.gameObjects.terroristBullets);
+                this.gameObjects.others[obj.id] = new OtherPlayer(this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,obj.weapons,this.gameObjects.terroristBullets);
                 this.game.add.existing(this.gameObjects.others[obj.id]);
 
             }else {
                 console.log('test')
-                this.gameObjects.others[obj.id] = new OhterPlayer(this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,obj.weapon,this.gameObjects.contraTerroristBullets);
+                this.gameObjects.others[obj.id] = new OtherPlayer(this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,obj.weapons,this.gameObjects.contraTerroristBullets);
                 this.game.add.existing(this.gameObjects.others[obj.id]);
             }
         }
@@ -347,8 +347,8 @@ GameState.prototype.creators = {
         var _this = this;
         this.soketEmiter.getSocket().on('NEW-PLAYER-JOINED',function(obj){
 
-            _this.gameObjects.others[obj.id] =  new OhterPlayer(_this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,
-                obj.weapon,obj.t=='t1'?_this.gameObjects.terroristBullets:_this.gameObjects.contraTerroristBullets);
+            _this.gameObjects.others[obj.id] =  new OtherPlayer(_this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,
+                obj.weapons,obj.t=='t1'?_this.gameObjects.terroristBullets:_this.gameObjects.contraTerroristBullets);
             _this.game.add.existing(_this.gameObjects.others[obj.id]);
             console.log('NEW PLAYER',_this.gameObjects.others[obj.id])
 
@@ -375,6 +375,17 @@ GameState.prototype.creators = {
         this.sound.bombpl = this.game.add.audio('bombpl');
         this.sound.bombdef = this.game.add.audio('bombdef');
         this.sound.bombex = this.game.add.audio('bombex');
+        this.sound.wpn_hudon = this.game.add.audio('wpn_hudon');
+        this.sound.weapons=[
+            this.game.add.audio('fireUSP'),
+            this.game.add.audio('fireFnf2000'),
+            this.game.add.audio('fireAk47'),
+            this.game.add.audio('fireP90'),
+            this.game.add.audio('fireAWP'),
+            this.game.add.audio('fireM4a1'),
+        ];
+
+
         this.sound.ric = [
             this.game.add.audio('ric1',0.3),
             this.game.add.audio('ric2',0.3),

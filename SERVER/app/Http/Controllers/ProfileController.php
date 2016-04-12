@@ -17,8 +17,8 @@ class ProfileController extends Controller
 	{
 		$user = \Auth::user();
 		$items = $user->data_user->item()->get();
-		
-		
+
+
 		foreach ($items as $item){
 			if($item->type_id == 2){
 			$guns[] = $item;
@@ -30,16 +30,9 @@ class ProfileController extends Controller
 				$armors[]=$item;
 			}
 		}	
-		/* if(isset($armors)){	
-			if(isset($granades)){
-				return view('index')->with('data', $user->data_user)->with('guns', $guns)->with('granades', $granades)->with('armors', $armors);
-			}
-			else{
-				return view('index')->with('data', $user->data_user)->with('guns', $guns)->with('armors', $armors);
-			}
-		}
+
 		
-		*/if(isset($armors))
+		if(isset($armors))
 			return view('index')->with('data', $user->data_user)->with('guns', $guns)->with('armors', $armors);
 		else{
 			return view('index')->with('data', $user->data_user)->with('guns', $guns);
