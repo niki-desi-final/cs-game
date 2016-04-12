@@ -77,109 +77,73 @@ class ItemsTableSeeder extends Seeder
         	DB::table('items')
         	->insert([
         			'type_id'=> '2',
-        			'name'=> '9X19MM SIDEARM',
+        			'name'=> 'USP',
         			'capacity' => '20',
-        			'value' => '5',
-        			'price' => '400',
-        			'payed' => '0',
-        			'description' => 'The perfect weapon for beginners.',
-        			'image' => '/images/13.jpg'
-        	]);
-        	
-        	DB::table('items')
-        	->insert([
-        			'type_id'=> '2',
-        			'name'=> '228 COMPACT',
-        			'capacity' => '25',
         			'value' => '6',
-        			'price' => '600',
+        			'price' => '500',
         			'payed' => '0',
-        			'description' => 'It is a moderately powerful semi-automatic pistol',
-        			'image' => '/images/19.jpg'
+        			'description' => 'The USP is a semi-automatic pistol. It has high acuracy and low recoil, but low armor penetration power and low rate of fire.',
+        			'image' => '/images/usp.jpg'
         	]);
         	
         	DB::table('items')
         	->insert([
         			'type_id'=> '2',
-        			'name'=> 'M3 Super',
+        			'name'=> 'AK47',
+        			'capacity' => '25',
+        			'value' => '20',
+        			'price' => '7000',
+        			'payed' => '0',
+        			'description' => 'The AK-47  is a selective-fire (semi-automatic and automatic), gas-operated assault rifle. It has high demage, fast reload and is effective at all range.',
+        			'image' => '/images/ak47.jpg'
+        	]);
+        	
+        	DB::table('items')
+        	->insert([
+        			'type_id'=> '2',
+        			'name'=> 'P90',
         			'capacity' => '35',
         			'value' => '10',
-        			'price' => '1600',
+        			'price' => '5000',
         			'payed' => '0',
-        			'description' => 'That it has a more-or-less normal distribution of letters, as opposed to using. Content here, content here, making it look like readable',
-        			'image' => '/images/18.jpg'
+        			'description' => 'The P90 is a personal defense weapon. It has stable accuracy and low recoil even with continuous fire. It is a fairly light weapon.',
+        			'image' => '/images/p90.jpg'
         	]);
         	
         	DB::table('items')
         	->insert([
         			'type_id'=> '2',
-        			'name'=> 'CV 47',
+        			'name'=> 'AWP',
         			'capacity' => '40',
-        			'value' => '8',
-        			'price' => '900',
+        			'value' => '50',
+        			'price' => '10000',
         			'payed' => '0',
-        			'description' => 'It is one of the most powerful guns in the game known for its power and its range.',
-        			'image' => '/images/9.jpg'
+        			'description' => 'The AWP is a powerful bolt-action sniper rifle. It has fatal demadge, high penetration power and is very acurateat long range.',
+        			'image' => '/images/awp.jpg'
         	]);
         	
         	DB::table('items')
         	->insert([
         			'type_id'=> '2',
-        			'name'=> 'M249',
+        			'name'=> 'M4A1',
+        			'capacity' => '50',
+        			'value' => '18',
+        			'price' => '7500',
+        			'payed' => '0',
+        			'description' => 'The M4A1 is a moderately powerful assault rifle that can be mastered for nearly every situation. It is excellent at close to medium range and is very light.',
+        			'image' => '/images/m4a1.jpg'
+        	]);
+        	
+        	DB::table('items')
+        	->insert([
+        			'type_id'=> '2',
+        			'name'=> 'FNF2000',
         			'capacity' => '50',
         			'value' => '10',
-        			'price' => '1300',
+        			'price' => '4500',
         			'payed' => '0',
-        			'description' => 'It is a long established fact that a reader will be distracted. By the readable content of a page when looking.',
-        			'image' => '/images/10.jpg'
-        	]);
-        	
-        	DB::table('items')
-        	->insert([
-        			'type_id'=> '2',
-        			'name'=> 'Leone YG1265',
-        			'capacity' => '50',
-        			'value' => '15',
-        			'price' => '1500',
-        			'payed' => '0',
-        			'description' => 'The Leone YG1265 is a very powerful shotgun. It is very effective in long distance combat. ',
-        			'image' => '/images/16.jpg'
-        	]);
-        	
-        	DB::table('items')
-        	->insert([
-        			'type_id'=> '2',
-        			'name'=> 'D3-AU1',
-        			'capacity' => '100',
-        			'value' => '18',
-        			'price' => '2500',
-        			'payed' => '0',
-        			'description' => 'Very powerful weapon. With it you can kill eemy from very long distance',
-        			'image' => '/images/14.jpg'
-        	]);
-        	
-        	DB::table('items')
-        	->insert([
-        			'type_id'=> '5',
-        			'name'=> 'Premium account',
-        			'capacity' => '0',
-        			'value' => '14',
-        			'price' => '9.99',
-        			'payed' => '1',
-        			'description' => 'Premium account for 14 days.',
-        			'image' => '/images/m249.jpg'
-        	]);
-        	
-        	DB::table('items')
-        	->insert([
-        			'type_id'=> '5',
-        			'name'=> 'Premium account',
-        			'capacity' => '0',
-        			'value' => '7',
-        			'price' => '4,99',
-        			'payed' => '1',
-        			'description' => 'Premium account for 7 days',
-        			'image' =>'/images/m249.jpg'
+        			'description' => 'The F2000 is a selective fire weapon operating from a closed bolt. The F2000 is a gas operated, fully automatic and ambidextrous bullpup rifle.',
+        			'image' => '/images/fnf2.jpg'
         	]);
         	
         	DB::table('items')
@@ -190,7 +154,7 @@ class ItemsTableSeeder extends Seeder
         			'value' => '7',
         			'price' => '600',
         			'payed' => '0',
-        			'description' => 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those',
+        			'description' => 'Kevlar body armor reduces damage taken by players from bullets by a percentage that varies with the armor penetration of each weapon.',
         			'image' =>'/images/20.jpg'
         	]);
         	
@@ -202,7 +166,7 @@ class ItemsTableSeeder extends Seeder
         			'value' => '10',
         			'price' => '800',
         			'payed' => '0',
-        			'description' => 'It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures',
+        			'description' => 'Players can also buy a vest with a helmet which extends protection to the player\'s head. The helmet can save players from headshots. Like the vest, the helmet removes aimpunch from headshots. ',
         			'image' =>'/images/21.jpg'
         	]);
     }

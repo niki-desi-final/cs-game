@@ -25,7 +25,7 @@
 								 		@if($item->type_id == '4')
 								 			<div ><b>Add:</b>{{$item->value}}%</div>
 										 @endif
-								 		<div ><b>Price:</b>{{$item->price}}</div>
+								 		<div ><b>Price:</b>{{$item->price}}$</div>
 								 		<button type= "submit" class = "btn btn-primary btn-lg btn-buy" id = "{{$item->name}}">Buy</button>
 							 		</div>
 						 		</div>

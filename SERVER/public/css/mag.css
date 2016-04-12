@@ -86,7 +86,7 @@ height:140px;
 	
 }
 
-@media (min-width: 550px) 
+@media (min-width: 768px) 
 {
 	 
  .text{ 
@@ -103,6 +103,7 @@ height:140px;
     opacity:0.6;
     text-align:justify;
     color:#ffffff;
+    font-size:14px;
  } 
 	
  .pic>img{ 
