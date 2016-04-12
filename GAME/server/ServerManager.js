@@ -8,15 +8,7 @@ var Player = require('./Player');
 var WeaponDatabase = require('./WeaponDatabase');
 var Armor = require('./Armor');
 var request = require('request');
-
-request('http://localhost:8000/home', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(body) // Show the HTML for the Google homepage.
-
-    }
-    console.log(error);
-})
-
+var querystring = require('querystring');
 
 
 var ServerManager = function(serverInstance){
@@ -221,14 +213,14 @@ var ServerManager = function(serverInstance){
                         game.rooms[user.room].removePlayer(player);
                         socket.broadcast.to(user.room).emit('PLAYER-DISCONECTED', player.id);
                         var data = querystring.stringify({
-                            id: 1,
+                            id: user.id,
                             rounds: 100000,
                             scores: 1000000,
                             kills: 1000000,
                             money: 10000000
                         });
                         request.post({url:ServerManager.const.DBServer, form: data}, function(err,httpResponse,body){
-                           console.log(arguments);
+                           console.log(httpResponse);
                         });
 
                     }
