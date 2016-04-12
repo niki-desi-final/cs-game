@@ -104,11 +104,17 @@ GameState.prototype.updateWorld = function(stage){
     }
     for(var fireIndex in stage.events.firedPlayers){
         if(stage.events.firedPlayers[fireIndex].mustFire){
-            stage.gameObjects.others[fireIndex].x = stage.events.firedPlayers[fireIndex].x;
-            stage.gameObjects.others[fireIndex].y = stage.events.firedPlayers[fireIndex].y;
-            stage.gameObjects.others[fireIndex].rotation = stage.events.firedPlayers[fireIndex].r;
-            stage.gameObjects.others[fireIndex].shoot();
-            stage.events.firedPlayers[fireIndex].mustFire = false;
+            try{
+                stage.gameObjects.others[fireIndex].x = stage.events.firedPlayers[fireIndex].x;
+                stage.gameObjects.others[fireIndex].y = stage.events.firedPlayers[fireIndex].y;
+                stage.gameObjects.others[fireIndex].rotation = stage.events.firedPlayers[fireIndex].r;
+                stage.gameObjects.others[fireIndex].shoot();
+                stage.events.firedPlayers[fireIndex].mustFire = false;
+            }
+            catch (e){
+                console.log(e)
+            }
+
         }
     }
 };
