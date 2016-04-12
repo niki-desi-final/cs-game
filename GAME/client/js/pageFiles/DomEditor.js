@@ -1,9 +1,3 @@
-/**
- * Created by niki on 26.03.16.
- */
-/**
- * Operate with dom tree.
- */
 var DomEditor = function () {
 
     function getSearchParameters() {
@@ -36,7 +30,7 @@ var DomEditor = function () {
     return{
         /*Weapons must be array*/
         getUserData : function () {
-            return userData;
+            return userData.data;
         }
     }
 

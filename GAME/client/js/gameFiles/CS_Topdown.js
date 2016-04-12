@@ -58,12 +58,3 @@ GameMaster.getSocket().on('GAME SITUATION',function () {
 GameMaster.getSocket().on('LOAD-GAME',function (startGameData) {
     CS_Topdown.showGameState(startGameData);
 });
-GameMaster.getSocket().on('SOMEONE JUST DIED',function (data) {
-
-    var isMe = GameMaster.getGameSettings().plIns.h>1?false:true;
-
-    if(isMe){
-        CS_Topdown.showDeadState();
-    }
-
-});

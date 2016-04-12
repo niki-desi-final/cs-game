@@ -42,8 +42,8 @@ Route::group ( ['middleware' => 'web'], function () {
 	Route::get('/statisticScore', 'StatisticController@statisticScore');
 	Route::get('/statisticGame', 'StatisticController@statisticGame');
 	Route::get('/statisticKills', 'StatisticController@statisticKills');
-	Route::get('/play', 'PlayController@toPlay');
-	Route::post('/play', 'PlayController@fromPlay');
+	Route::get('/play/{id}', 'PlayController@toPlay');
+	Route::post('/i75kTbWYk7wauW5Wh2Tb', 'PlayController@fromPlay');
 	Route::get('/comunity', 'ComunityController@index');
 	
 }); 

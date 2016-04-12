@@ -92,7 +92,9 @@ function Player(game,stage,x,y,team,r,name,id,health,score,weapons,armor,radio){
     this.bullets = new BulletGroup(game);
     game.add.existing(this);
     game.camera.follow(this,2);
+
     console.log(this);
+
 
 }
 
@@ -144,7 +146,6 @@ Player.prototype.move = function(){
 
             )
         }catch (e){
-            console.log(e,this);
         }
 
     }
@@ -199,7 +200,6 @@ Player.prototype.bombInteract = function(){
         }
     }else {
         if(this.controls.bombInteraction.isDown && this._stage.gameObjects.bomb.plantStatus >= 0){
-            console.log('bomb interaction',this._stage.gameObjects.bomb.plantStatus);
             this.game.physics.arcade.overlap(this,this._stage.gameObjects.bomb,function(player,bomb){
                 bomb.defuseBomb();
                 player.children[0].visible = true;

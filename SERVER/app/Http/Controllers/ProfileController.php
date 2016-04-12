@@ -17,14 +17,13 @@ class ProfileController extends Controller
 	{
 		$user = \Auth::user();
 		$items = $user->data_user->item()->get();
-
 		$gunsIds = [];
 		$armorsIds = [];
 
 		foreach ($items as $item){
 			if($item->type_id == 2){
 			$guns[] = $item;
-			$gunsIds = $item->id;
+			$gunsIds[] = $item->id;
 			}
 			if($item->type_id == 6){
 				$armors[]=$item;
@@ -35,10 +34,12 @@ class ProfileController extends Controller
 		$playerData = [
 				'userName'=>$user->name,
 				'weapons'=>$gunsIds,
-				'armor' => $armorsIds
+				'armor' => $armorsIds,
+				'userId' => $user->id
 		];
-		$playerData = json_encode($playerData);
-		$codedData = openssl_encrypt($playerData,'camellia-256-cfb1','CSMANIA',false,'0114324313123123');
+		$codedData =base64_encode(json_encode($playerData));
+
+		//$codedData = openssl_encrypt($playerData,'camellia-256-cfb1','CSMANIA',false,'0114324313123123');
 
 		if(isset($armors))
 			return view('index')->with('data', $user->data_user)->with('guns', $guns)->with('armors', $armors);

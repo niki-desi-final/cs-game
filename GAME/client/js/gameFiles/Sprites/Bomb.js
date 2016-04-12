@@ -58,7 +58,6 @@ Bomb.prototype.plantBomb = function(){
         this.children[0].visible = true;
         this.radio.getSocket().emit('BOMB-PLANTED');
         this._stage.sound.bombpl.play();
-        console.log('Bomb Hs ben planed')
     }
 };
 Bomb.prototype.defuseBomb = function(){
@@ -67,7 +66,6 @@ Bomb.prototype.defuseBomb = function(){
         this.children[0].visible = false;
         this.radio.getSocket().emit('BOMB-DEFUSED');
         this._stage.sound.bombdef.play();
-        console.log('Bomb Has been defused');
 
     }
 };

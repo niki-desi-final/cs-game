@@ -8,13 +8,11 @@ var LocalMemoryStorage = function () {
     return{
         setOtherPlayers:function (players) {
             otherPlayers = players;
-            console.log('changes')
         },
         getOtherPlayers:function () {
             return otherPlayers;
         },
         addNewPlayer:function (player) {
-            console.log('New user loged');
             otherPlayers[player.id] = player;
         },
         deletePlayer:function (playerId) {

@@ -21,7 +21,6 @@ var GameState = function(game,game_master,stateInitData) {
         player : stateInitData.currentPlayer,
         roomSituation:stateInitData.roomSS
     };
-    console.log(this.GM);
     this.mapElements = {
         map:this.map,
         layer:{
@@ -138,7 +137,6 @@ GameState.prototype.Ui = {
         var mapData = this.mapElements.map;
         var miniMapSizeW = mapData.width/2.5;
         var miniMapSizeH = mapData.height/2.5;
-        console.log(mapData);
 
         var miniMapBmd = this.game.add.bitmapData(mapData.width * miniMapSizeW , mapData.height * miniMapSizeH);
 
@@ -172,7 +170,6 @@ GameState.prototype.Ui = {
         this.miniMapPlayer.scale.setTo(0.1,0.1);
         this.miniMapPlayer.fixedToCamera = true;
 
-        console.log(this.miniMapBMDPlayer);
 
     }
 };
@@ -337,7 +334,6 @@ GameState.prototype.creators = {
                 this.game.add.existing(this.gameObjects.others[obj.id]);
 
             }else {
-                console.log('test')
                 this.gameObjects.others[obj.id] = new OtherPlayer(this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,obj.weapons,this.gameObjects.contraTerroristBullets);
                 this.game.add.existing(this.gameObjects.others[obj.id]);
             }
@@ -350,7 +346,6 @@ GameState.prototype.creators = {
             _this.gameObjects.others[obj.id] =  new OtherPlayer(_this.game,obj.x,obj.y,obj.t,obj.r,obj.N,obj.h,obj.s,
                 obj.weapons,obj.t=='t1'?_this.gameObjects.terroristBullets:_this.gameObjects.contraTerroristBullets);
             _this.game.add.existing(_this.gameObjects.others[obj.id]);
-            console.log('NEW PLAYER',_this.gameObjects.others[obj.id])
 
 
         });
@@ -358,7 +353,6 @@ GameState.prototype.creators = {
 
                 _this.gameObjects.others[id].destroy();
                 delete _this.gameObjects.others[id];
-                console.log('Player disconeted');
         });
     },
     createSound:function(){

@@ -28,18 +28,16 @@ var GameMaster = function (dom_edtr) {
         /**
          * Need user name for results persist;
          */
-        socket.emit('MY-NAME-IS',dom_edtr.getUserData());
+        socket.emit('INIT-DATA',dom_edtr.getUserData());
 
 
     });
 
     /*STEP 2*/
     socket.on('GAME SITUATION',function (serverResponse) {
-        console.log(serverResponse);
         GameSettings.currentJoinedRoom = serverResponse.roomSituation;
     });
     socket.on('SERVER-CHANGED-WEAPON',function (serverResponse) {
-        console.log(serverResponse);
     });
 
 
@@ -100,7 +98,6 @@ var GameMaster = function (dom_edtr) {
             });
             socket.on('SEND-XY',function(data){
 
-                console.log(data);
                 gameThis.gameObjects.player.x = data.x;
                 gameThis.gameObjects.player.y = data.y;
                 gameThis.GameUi.healthText.setText('HEALT : '+ data.h);
@@ -164,7 +161,6 @@ var GameMaster = function (dom_edtr) {
 
             socket.on('SOMEONE-CHANGED-WEAPON',function (who) {
                 stage.gameObjects.others[who.playerId].switchWeapon(who.newWeapon);
-                console.log(who);
             });
             socket.on('SERVER-CHANGED-WEAPON',function () {
                 stage.sound.wpn_hudon.play();

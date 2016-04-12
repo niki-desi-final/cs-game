@@ -10,12 +10,12 @@ class PlayController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('auth');
+		//$this->middleware('auth');
 	}
 	
-	public function toPlay()
+	public function toPlay($id)
 	{
-		$user = \App\Data_user::find(\Auth::user()->id);
+		$user = \App\Data_user::find($id);
 		$item = $user->data_user_item()->get();
 		$data = $user->get();
 		$items = $item;
@@ -24,16 +24,15 @@ class PlayController extends Controller
 		
 	}
 	
-	public function fromPlay(Request $dataUser, $dataItems)
+	public function fromPlay(Request $request)
 	{
-		$user = \App\Data_user::find($dataUser->id);
-		$user->game_played = $dataUser['game_played'];
-		$user->score = $dataUser['score'];
-		$user->kills = $dataUser['kills'];
+		$id = $request['id'];
+		$user = \App\Data_user::find($id);
+		$user->game_played += $request['rounds'];
+		$user->score += $request['scores'];
+		$user->kills += $request['kills'];
+		$user->money += $request['money'];
 		$user->save();
-		
-		$item = \App\Data_user_item::find($dataItem->id);
-		$item->quantity = $dataItems['quantity'];
-		$item->save();
+		return $user;
 	}
 }

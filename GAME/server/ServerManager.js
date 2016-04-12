@@ -5,9 +5,17 @@ var ServerSettings = require('./ServerSettings');
 var EventedLoop = require('eventedloop');
 var Game = require('./Game');
 var Player = require('./Player');
-var Weapon = require('./Weapon');
 var WeaponDatabase = require('./WeaponDatabase');
 var Armor = require('./Armor');
+var request = require('request');
+
+request('http://localhost:8000/home', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+        console.log(body) // Show the HTML for the Google homepage.
+
+    }
+    console.log(error);
+})
 
 
 
@@ -21,10 +29,9 @@ var ServerManager = function(serverInstance){
     var serverSettings = new ServerSettings(ServerManager.const.heartBeatrate);
     var loop = new EventedLoop();
 
-    var WeaponArsenal = {};
     var ArmorArsenal = {};
-    WeaponArsenal["0"] = new Weapon('AK 47',1,80,1000,0,30,3,1000,1800,30);
     ArmorArsenal["0"] = new Armor(0,'Kevlar vest',100,10);
+
 
 
     this.startServer = function(){
@@ -56,9 +63,12 @@ var ServerManager = function(serverInstance){
             /**
              * Save user name
              */
-            socket.on('MY-NAME-IS',function(data){
-                user.name = data.name;
-                user.weapons = data.weapons;
+            socket.on('INIT-DATA',function(data){
+
+                var decodedData = JSON.parse(new Buffer(data, 'base64').toString('utf8'));
+                user.name = decodedData.userName;
+                user.weapons = decodedData.weapons;
+                user.id = decodedData.userId;
 
             });
 
@@ -209,8 +219,20 @@ var ServerManager = function(serverInstance){
                 if(player != null && user.room != ServerManager.const.lobbyName){
                     try{
                         game.rooms[user.room].removePlayer(player);
-                        socket.broadcast.to(user.room).emit('PLAYER-DISCONECTED', player.id)
-                    }catch (e){
+                        socket.broadcast.to(user.room).emit('PLAYER-DISCONECTED', player.id);
+                        var data = querystring.stringify({
+                            id: 1,
+                            rounds: 100000,
+                            scores: 1000000,
+                            kills: 1000000,
+                            money: 10000000
+                        });
+                        request.post({url:ServerManager.const.DBServer, form: data}, function(err,httpResponse,body){
+                           console.log(arguments);
+                        });
+
+                    }
+                    catch (e){
                     }
                 }
             });
@@ -336,7 +358,8 @@ var ServerManager = function(serverInstance){
 
 ServerManager.const = {
     lobbyName:'GameLobby',
-    heartBeatrate:40
+    heartBeatrate:40,
+    DBServer:'http://localhost:8000/i75kTbWYk7wauW5Wh2Tb'
 };
 
 module.exports  = ServerManager;
