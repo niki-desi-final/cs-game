@@ -6,12 +6,12 @@
  <link href="css/mag.css" rel="stylesheet">
  @endsection
  @section('content')
-
+<div class = "row">
 	<div class = "col-md-3 mag">
-		 <ul id= "double" class = " jumbotron pff col-md-12">
+		 <ul id= "double" class = " jumbotron pff col-md-12 col-sd-12">
 			 @foreach($items as $item)
 				 @if($item->payed == 0 && $item->id > 5)
-				 <form method = "post" action = "/magazine" class="form col-md-12 col-sd-1">
+				 <form method = "post" action = "/magazine" class="form col-md-12 col-sd-12">
 					 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 					 <input type= "hidden" name = "item_id" value = "{{$item->id}}">
 						 <li id = '{{$item->id}}' class = "double " >
