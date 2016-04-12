@@ -62,6 +62,14 @@
 				
 		@endif
 		</div>
+
+		<div class="jumbotron pff text-center">
+
+
+			<a class="btn btn-primary btn-lg" href="localhost:8080/?data={{$gameData}}">PLAY GAME</a>
+
+
+		</div>
 	</div>	 	
  </div>	 		
 
