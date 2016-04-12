@@ -240,6 +240,7 @@ Player.prototype.respawn = function(newStats){
     this.visible = true;
 };
 Player.prototype.switchWeapon = function(weaponIndex){
+
     if(this.weapons[weaponIndex] != undefined && !this.weapons[this.weapons.selectedWeapon].isReloading){
         this.weapons.selectedWeapon = weaponIndex;
         this.radio.getSocket().emit('WEAPON CHANGED',weaponIndex);

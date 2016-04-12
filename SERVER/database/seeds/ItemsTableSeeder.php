@@ -73,7 +73,7 @@ class ItemsTableSeeder extends Seeder
         			'image' => '/images/30.jpg'
         	
         			]);
-        	
+
         	DB::table('items')
         	->insert([
         			'type_id'=> '2',

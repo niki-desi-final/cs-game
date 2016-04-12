@@ -22,12 +22,15 @@ var DomEditor = function () {
         userData.weapons = [0,1,2,3,4,5];
     }
     /*Greet user*/
-    $('#name-span').text(userData.name);
+
 
 
 
 
     return{
+        setName:function(name){
+            $('#name-span').text(name);
+        },
         /*Weapons must be array*/
         getUserData : function () {
             return userData.data;

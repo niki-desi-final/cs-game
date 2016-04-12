@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,6 +18,8 @@ class ProfileController extends Controller
 	{
 		$user = \Auth::user();
 		$items = $user->data_user->item()->get();
+		$guns = [];
+
 		$gunsIds = [];
 		$armorsIds = [];
 
@@ -31,6 +34,7 @@ class ProfileController extends Controller
 			}
 		}
 
+		return $gunsIds;
 		$playerData = [
 				'userName'=>$user->name,
 				'weapons'=>$gunsIds,

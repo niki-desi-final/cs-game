@@ -372,11 +372,11 @@ GameState.prototype.creators = {
         this.sound.wpn_hudon = this.game.add.audio('wpn_hudon');
         this.sound.weapons=[
             this.game.add.audio('fireUSP'),
-            this.game.add.audio('fireFnf2000'),
             this.game.add.audio('fireAk47'),
             this.game.add.audio('fireP90'),
-            this.game.add.audio('fireAWP'),
             this.game.add.audio('fireM4a1'),
+            this.game.add.audio('fireFnf2000'),
+            this.game.add.audio('fireAWP'),
         ];
 
 

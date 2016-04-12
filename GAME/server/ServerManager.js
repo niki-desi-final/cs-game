@@ -58,10 +58,19 @@ var ServerManager = function(serverInstance){
             socket.on('INIT-DATA',function(data){
 
                 var decodedData = JSON.parse(new Buffer(data, 'base64').toString('utf8'));
-                user.name = decodedData.userName;
-                user.weapons = decodedData.weapons;
-                user.id = decodedData.userId;
+                if(decodedData != undefined){
+                    user.name = decodedData.userName;
+                    user.weapons = decodedData.weapons;
+                    user.id = decodedData.userId;
+                    socket.emit('USERNAME-RESOLVED',decodedData.userName);
+                    console.log('conected')
 
+                }else {
+                    user.weapons = [1];
+                    user.id = 0;
+                    user.name = 'Guest';
+                    socket.emit('USERNAME-RESOLVED',user.name);
+                }
             });
 
             /**
@@ -214,13 +223,12 @@ var ServerManager = function(serverInstance){
                         socket.broadcast.to(user.room).emit('PLAYER-DISCONECTED', player.id);
                         var data = querystring.stringify({
                             id: user.id,
-                            rounds: 100000,
-                            scores: 1000000,
-                            kills: 1000000,
-                            money: 10000000
+                            rounds: player.roundPlayed,
+                            scores: player.s,
+                            kills: player.kills,
+                            money: player.s
                         });
                         request.post({url:ServerManager.const.DBServer, form: data}, function(err,httpResponse,body){
-                           console.log(httpResponse);
                         });
 
                     }

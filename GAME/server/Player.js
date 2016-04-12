@@ -26,6 +26,7 @@ function Player(playerName,team){
         this.deads = 0;
         this.kills = 0;
         this.isMoved = false;
+        this.roundPlayed = 0;
         if (team == 't1'){
             this.x = 1494;
             this.y = 2116;
@@ -61,6 +62,7 @@ Player.prototype.respawn = function(){
     this.h = 100;
     this.isMoved = true;
     this.weapons[this.weapons.selectedWeapon].wAmmo = this.weapons[this.weapons.selectedWeapon].wAmmoCap;
+    this.roundPlayed++;
 };
 /**
  *

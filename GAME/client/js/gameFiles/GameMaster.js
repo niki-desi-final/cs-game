@@ -32,6 +32,9 @@ var GameMaster = function (dom_edtr) {
 
 
     });
+    socket.on('USERNAME-RESOLVED',function(name){
+        dom_edtr.setName(name);
+    });
 
     /*STEP 2*/
     socket.on('GAME SITUATION',function (serverResponse) {

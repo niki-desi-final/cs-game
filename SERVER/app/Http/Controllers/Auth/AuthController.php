@@ -82,12 +82,8 @@ class AuthController extends Controller {
 				'created_at'=>Carbon::now(),
 				'updted_at'=>Carbon::now()
 		]);
-		
-		\App\Data_user_item::create([
-			'data_user_id'	=> $dataUser->id,
-			'item_id' => '1',
-			'quantity' => '1'
-		]);
+
+
 		
 		
 		return $user;
