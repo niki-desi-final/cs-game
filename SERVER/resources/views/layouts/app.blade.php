@@ -82,8 +82,7 @@ body {
 							<li><a href="{{ url('/logout') }}"><i
 									class="fa fa-btn fa-sign-out"></i>Logout</a></li>
 						</ul></li> @endif
-				<li class= "play"><a href="http://46.101.173.111:8080/?name={{
-							Auth::user()->name }}">Play</a></li>
+
 				</ul>
 				
 			</div>
