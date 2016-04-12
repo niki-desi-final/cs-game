@@ -17,7 +17,7 @@ class StatisticController extends Controller
 	public function statisticGame()
 	{
 		$user = \Auth::user();	
-		$sorts = \App\Data_user::orderBy('game_played')->paginate(5);
+		$sorts = \App\Data_user::orderBy('game_played','desc')->paginate(5);
 		return view('statistics')->with('data', $user->data_user)->with('sorts', $sorts);
 	}
 	
@@ -25,7 +25,7 @@ class StatisticController extends Controller
 	{
 		
 		$data = \App\Data_user::find(\Auth::user()->id);
-		$sorts = \App\Data_user::orderBy('score')->paginate(15);
+		$sorts = \App\Data_user::orderBy('score','desc')->paginate(15);
 		
 		return view('statistics')->with('data', $data)->with('sorts', $sorts);
 	
@@ -35,15 +35,9 @@ class StatisticController extends Controller
 	{
 
 		$data = \App\Data_user::find(\Auth::user()->id);
-		$sorts = \App\Data_user::orderBy('kills')->paginate(15);
+		$sorts = \App\Data_user::orderBy('kills','desc')->paginate(15);
 		return view('statistics')->with('data', $data)->with('sorts', $sorts);
 		
 	}
-	
-	public function myStatistic()
-	{
-		$data = \App\Data_user::find(\Auth::user()->id);
-		$sorts = $data->with('user')->get();
-		return view('statistics')->with('data', $data)->with('sorts', $sorts);
-	}
+
 }

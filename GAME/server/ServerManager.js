@@ -63,7 +63,6 @@ var ServerManager = function(serverInstance){
                     user.weapons = decodedData.weapons;
                     user.id = decodedData.userId;
                     socket.emit('USERNAME-RESOLVED',decodedData.userName);
-                    console.log('conected')
 
                 }else {
                     user.weapons = [1];
@@ -146,6 +145,7 @@ var ServerManager = function(serverInstance){
                     var resultedDMG = targetPlayer.armor.dmgReduce(damageFromWeapon);
                     targetPlayer.h -= resultedDMG;
                     player.s += resultedDMG;
+
                     targetPlayer.isMoved = true;
                     if(targetPlayer.h <= 0){
                         targetPlayer.x = 0;
@@ -164,6 +164,7 @@ var ServerManager = function(serverInstance){
                         }
 
                     }else {
+                        player.kills++;
                         socket.emit('TANGO-HIT',{
                             tango:player.id,
                             score:player.s
@@ -179,8 +180,13 @@ var ServerManager = function(serverInstance){
             socket.on('RELOAD-WEAPON',function(){
                setTimeout(function(){
                    socket.emit('RELOADED-WEAPON',player.weapons[player.weapons.selectedWeapon].wAmmoCap);
-                   player.weapons[player.weapons.selectedWeapon].wAmmo = player.weapons[player.weapons.selectedWeapon].wAmmoCap;
-               },player.weapons[player.weapons.selectedWeapon].rSpeed)
+                   try{
+
+                       player.weapons[player.weapons.selectedWeapon].wAmmo = player.weapons[player.weapons.selectedWeapon].wAmmoCap;
+
+                   }catch (e){
+                        console.log(e)
+                   }},player.weapons[player.weapons.selectedWeapon].rSpeed)
             });
             socket.on('WEAPON CHANGED',function(windex){
                 player.weapons.selectedWeapon = windex;

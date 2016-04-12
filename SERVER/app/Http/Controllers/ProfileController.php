@@ -32,9 +32,8 @@ class ProfileController extends Controller
 				$armors[]=$item;
 				$armorsIds[] = $item->id;
 			}
-		}
+		};
 
-		return $gunsIds;
 		$playerData = [
 				'userName'=>$user->name,
 				'weapons'=>$gunsIds,
