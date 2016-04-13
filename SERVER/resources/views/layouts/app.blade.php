@@ -64,7 +64,7 @@ body {
 			        </li>
 					<li class = "sp" id="sp1">Money: {{$data->money}}</li>
 					<li class = "sp" id="sp2">Score: {{$data->score}}</li>
-					<li class = "sp" id="sp3">Played games: {{$data->game_played}}</li>
+					<li class = "sp" id="sp3">Played rounds: {{$data->game_played}}</li>
 					
 					@endif
 				</ul>			

@@ -68,7 +68,6 @@ GameState.prototype.create = function () {
     this.respawnUi.respawnImage = this.game.add.image(30, 100, 'deadMSG');
     this.respawnUi.respawnImage.fixedToCamera = true;
     this.respawnUi.respawnImage.visible = false;
-    console.log(this.gameObjects.bomb);
 };
 
 GameState.prototype.update = function () {

@@ -74,7 +74,7 @@ class AuthController extends Controller {
 		
 		$dataUser = \App\Data_user::create([
 				'user_id'=>$user->id,
-				'money' => '500',
+				'money' => '40000',
 				'score' =>'0',
 				'health'=> '50',
 				'game_played'=>'0',
@@ -146,7 +146,7 @@ class AuthController extends Controller {
 		
 		$dataUser = \App\Data_user::create([
 				'user_id'=>$user->id,
-				'money' => '500',
+				'money' => '40000',
 				'score' =>'0',
 				'health'=> '50',
 				'game_played'=>'0',
@@ -155,7 +155,7 @@ class AuthController extends Controller {
 				'updted_at'=>Carbon::now()
 		]);
 		
-		
+
 		}
 		return $user;
 	}

@@ -60,8 +60,13 @@ var ServerManager = function(serverInstance){
                 if(data){
                     var decodedData = JSON.parse(new Buffer(data, 'base64').toString('utf8'));
 
+
+
                     user.name = decodedData.userName;
                     user.weapons = decodedData.weapons;
+                    if(user.weapons.length ==0){
+                        user.weapons[0] = 6
+                    }
                     user.id = decodedData.userId;
                     socket.emit('USERNAME-RESOLVED',decodedData.userName);
 
@@ -225,32 +230,33 @@ var ServerManager = function(serverInstance){
 
             socket.on('disconnect',function () {
                 if(player != null && user.room != ServerManager.const.lobbyName){
-                    try{
 
-                        game.rooms[user.room].removePlayer(player);
-                        socket.broadcast.to(user.room).emit('PLAYER-DISCONECTED', player.id);
+                }
+                try{
 
-                        if(user.id != 0){
-                            var data = querystring.stringify({
-                                id: user.id,
-                                rounds: player.roundPlayed,
-                                scores: player.s,
-                                kills: player.kills,
-                                money: player.s
-                            });
-                            request.post({url:ServerManager.const.DBServer, form: data}, function(err,httpResponse,body){
-                            });
+                    game.rooms[user.room].removePlayer(player);
+                    socket.broadcast.to(user.room).emit('PLAYER-DISCONECTED', player.id);
 
-                        }
+                    if(user.id != 0){
+                        var data = querystring.stringify({
+                            id: user.id,
+                            rounds: player.roundPlayed,
+                            scores: player.s,
+                            kills: player.kills,
+                            money: player.s
+                        });
+                        request.post({url:ServerManager.const.DBServer, form: data}, function(err,httpResponse,body){
+                        });
 
                     }
-                    catch (e){
-                    }
+
+                }
+                catch (e){
                 }
             });
         });
 
-        loop.every('50ms',function(){
+        loop.every('40ms',function(){
 
             for(var i= 0;i <= 9;i++ ){
                 payload = {};

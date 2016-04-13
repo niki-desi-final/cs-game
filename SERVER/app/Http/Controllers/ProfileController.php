@@ -70,7 +70,7 @@ class ProfileController extends Controller
 			$user->data_user->money -=  $item->price;
 			$user->data_user->save();
 			$data = \App\Data_user_item::firstOrCreate(['data_user_id' => $user->id, 'item_id' => $request['item_id']]);
-			$data->increment('quantity');
+			//$data->increment('quantity');
 		}
 		
 		return redirect('magazine')->with('data', $user->data_user);

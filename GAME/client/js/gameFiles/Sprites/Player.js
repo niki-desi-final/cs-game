@@ -93,7 +93,6 @@ function Player(game,stage,x,y,team,r,name,id,health,score,weapons,armor,radio){
     game.add.existing(this);
     game.camera.follow(this,2);
 
-    console.log(this);
 
 
 }
