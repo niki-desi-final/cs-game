@@ -163,9 +163,9 @@ var ServerManager = function(serverInstance){
                         }else if(targetPlayer.t == 't2'){
                             game.rooms[user.room].gameProgres.t2Alive--;
                         }
-
-                    }else {
                         player.kills++;
+                    }else {
+
                         socket.emit('TANGO-HIT',{
                             tango:player.id,
                             score:player.s

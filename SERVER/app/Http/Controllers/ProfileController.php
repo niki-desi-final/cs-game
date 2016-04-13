@@ -45,9 +45,16 @@ class ProfileController extends Controller
 		//$codedData = openssl_encrypt($playerData,'camellia-256-cfb1','CSMANIA',false,'0114324313123123');
 
 		if(isset($armors))
-			return view('index')->with('data', $user->data_user)->with('guns', $guns)->with('armors', $armors);
+			return view('index')
+				->with('data', $user->data_user)
+				->with('guns', $guns)
+				->with('armors', $armors)
+				->with('gameData', $codedData);
 		else{
-			return view('index')->with('data', $user->data_user)->with('guns', $guns)->with('gameData', $codedData);
+			return view('index')
+				->with('data', $user->data_user)
+				->with('guns', $guns)
+				->with('gameData', $codedData);
 			
 		}
 	

@@ -140,7 +140,7 @@ var GameMaster = function (dom_edtr) {
 
             });
             socket.on('TANGO-HIT',function(data){
-                stage.GameUi.scoreText.setText('SCORE :' + data.score);
+                stage.GameUi.scoreText.setText('SCORE :' + parseInt(data.score));
             });
             socket.on('OTHER-SPAWNED',function(playerID){
                 stage.gameObjects.others[playerID].visible = true;

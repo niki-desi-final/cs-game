@@ -66,7 +66,7 @@
 		<div class="jumbotron pff text-center">
 
 
-			<a class="btn btn-primary btn-lg" href="localhost:8080/?data={{$gameData}}">PLAY GAME</a>
+			<a class="btn btn-primary btn-lg" href="http://{{getenv('IP_ADDRESS')}}:8080/?data={{$gameData}}">PLAY GAME</a>
 
 
 		</div>
