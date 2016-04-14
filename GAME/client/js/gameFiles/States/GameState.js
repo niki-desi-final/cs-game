@@ -296,6 +296,13 @@ GameState.prototype.drawMinimap = function(){
     this.miniMapBMDPlayer.context.clearRect(0,0,this.miniMapBMDPlayer.width,this.miniMapBMDPlayer.height);
     this.miniMapBMDPlayer.ctx.fillStyle = "#008800";
     this.miniMapBMDPlayer.ctx.fillRect(Math.floor(this.gameObjects.player.x /1.59),Math.floor(this.gameObjects.player.y /1.16), 40, 40);
+    this.miniMapBMDPlayer.ctx.fillStyle = "#1E90FF";
+    for (var index in this.gameObjects.others){
+        if(this.gameObjects.others[index].team == this.GM.player.t){
+            this.miniMapBMDPlayer.ctx.fillRect(Math.floor(this.gameObjects.others[index].x /1.59),Math.floor(this.gameObjects.others[index].y /1.16), 40, 40);
+
+        }
+    }
     this.miniMapBMDPlayer.dirty = true;
 };
 GameState.prototype.playBulletRicochet = function(){
@@ -326,6 +333,8 @@ GameState.prototype.creators = {
 
         this.mapElements.layer.collider.resizeWorld();
         this.mapElements.layer.base.resizeWorld();
+
+
 
     },
 
