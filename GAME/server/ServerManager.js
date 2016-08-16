@@ -71,7 +71,7 @@ var ServerManager = function(serverInstance){
                     socket.emit('USERNAME-RESOLVED',decodedData.userName);
 
                 }else {
-                    user.weapons = [6];
+                    user.weapons = [6,7,8,9,10,11];
                     user.id = 0;
                     user.name = 'Guest';
                     socket.emit('USERNAME-RESOLVED',user.name);
